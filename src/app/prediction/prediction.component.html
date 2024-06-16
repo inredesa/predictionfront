@@ -1,0 +1,57 @@
+<div class="wrapper">
+  <app-title [subtitle]="subtitle"></app-title>
+
+  <div class="main">
+    <section fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="15px">
+      <mat-form-field appearance="fill" fxFlex="70">
+        <mat-label>Municipio</mat-label>
+        <input type="text"
+                matInput
+                [formControl]="myControl"
+                [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayMunicipalityName" (optionSelected)="onSelectMunicipality($event)">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" fxFlex="30">
+        <mat-label>Temperatura</mat-label>
+        <mat-select (selectionChange)="selectTemperature($event)" [(value)]="selectedTemperatureUnit">
+          <mat-option *ngFor="let temperatureUnit of temperatureUnits" [value]="temperatureUnit">
+            {{temperatureUnit}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </section>
+
+    <section *ngIf="averageTemperature && averageTemperature !== 1000" fxLayout="column" fxLayoutAlign="space-between center">
+      <p>{{ municipalityNameSelected }}</p>
+
+      <div class="prediction-date" fxLayout="column" fxLayoutAlign="space-between center" fxLayoutGap="5px">
+        <b>{{ tomorrow | customDateFormat }}</b>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="7px">
+        <div>Temperatura media:</div>
+        <b>{{ averageTemperature }}</b>
+        <b>{{ temperatureUnit }}</b>
+      </div>
+      
+      <div class="precipitation-probability-title">Probabilidad de precipitaciones</div>
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+        <div *ngFor="let precipitationProbability of precipitationProbabilityList">
+          <div fxLayout="column" fxLayoutAlign="space-between center" fxLayoutGap="5px">
+            <div class="precipitation-value">
+              <div>{{ precipitationProbability.value }}</div>
+            </div>
+            <div class="precipitation-period">{{ precipitationProbability.period }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <app-footer></app-footer>
+</div>

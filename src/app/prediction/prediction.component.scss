@@ -1,0 +1,47 @@
+.wrapper {
+  color: #6b5898;
+
+  app-title {
+    margin-top: 6%;
+  }
+
+  p {
+    font-size: 1.9em;
+    font-weight: bold;
+    margin-top: 15px;
+  }
+
+  .prediction-date {
+    margin-bottom: 15px;
+
+    b {
+      background: #6b5898;
+      padding: 5px 8px;
+      border-radius: 18px;
+      color: white;
+      font-size: 1em;
+      font-weight: normal;
+    }
+  }
+
+  b {
+    font-size: 1.3em;
+  }
+
+  .precipitation-probability-title {
+    margin: 12px 0 8px 0;
+  }
+
+  .precipitation-value {
+    width: 40px;
+    height: 40px;
+    background-color: #6b5898;
+    border-radius: 20px;
+    color: #FFFFFF;
+    font-size: 1.2em;
+    font-weight: bold;
+    align-content: center;
+    text-align: center;
+  }
+  
+}
